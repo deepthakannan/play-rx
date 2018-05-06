@@ -2,7 +2,19 @@ import {Observable, Observer, from} from 'rxjs'
 
 let colors = ["violet", "indigo", "blue", null, undefined];
 
-let source = from(colors);
+// let source = from(colors);
+
+let source = Observable.create((observer) => {
+    colors.forEach((color) => {
+
+        if(!!color) {
+            observer.next(color);
+        } else {
+            observer.error(`Invalid color: ${color}`);
+        }
+    })
+    observer.complete();
+})
 
 class ColorObserver implements Observer<string> {
 
@@ -14,7 +26,7 @@ class ColorObserver implements Observer<string> {
     }
 
     error (error) {
-        console.log(error);
+        console.error(error);
     }
 
     complete () {
@@ -26,6 +38,6 @@ source.subscribe(new ColorObserver(1))
 source.subscribe(new ColorObserver(2))
 source.subscribe(
     (value)=> {console.log(`ColorObserver Anonymous: ${value}`)},
-    (error)=> {console.log(`ColorObserver Anonymous: ${error}`)},
+    (error)=> {console.error(`ColorObserver Anonymous: ${error}`)},
     ()=> {console.log(`ColorObserver Anonymous Complete`)}
 )
