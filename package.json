@@ -1,0 +1,31 @@
+{
+  "name": "play-rx",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "webpack-dev-server --watch --inline --mode development",
+    "build": "webpack --watch",
+    "postinstall": "typings install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepthakannan/play-rx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepthakannan/play-rx/issues"
+  },
+  "homepage": "https://github.com/deepthakannan/play-rx#readme",
+  "dependencies": {
+    "rxjs": "^6.1.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^4.2.0",
+    "typescript": "^2.8.3",
+    "typings": "^2.1.1",
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
