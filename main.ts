@@ -18,9 +18,14 @@ class ColorObserver implements Observer<string> {
     }
 
     complete () {
-        console.log("Complete");
+        console.log(`ColorObserver ${this.name}: Complete`);
     }
 }
 
 source.subscribe(new ColorObserver(1))
 source.subscribe(new ColorObserver(2))
+source.subscribe(
+    (value)=> {console.log(`ColorObserver Anonymous: ${value}`)},
+    (error)=> {console.log(`ColorObserver Anonymous: ${error}`)},
+    ()=> {console.log(`ColorObserver Anonymous Complete`)}
+)
