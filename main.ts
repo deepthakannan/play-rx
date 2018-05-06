@@ -1,6 +1,7 @@
-import { Observable, Observer, from } from 'rxjs'
+import { Observable, Observer, Operator, Subject, ReplaySubject, from, of, range, pipe } from 'rxjs';
+import { map, filter, switchMap,  } from 'rxjs/operators';
 
-let colors = ["violet", "indigo", "blue", null, undefined];
+let colors = ["violet", "indigo", "blue", "black", null, undefined];
 
 // let source = from(colors);
 
@@ -18,7 +19,7 @@ let source = Observable.create((observer) => {
         }
     }
     produceColor();
-})
+}).pipe(filter(color => !!color && color != "black"), map(color => `Bright ${color}`));
 
 class ColorObserver implements Observer<string> {
 
